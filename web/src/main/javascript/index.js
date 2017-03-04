@@ -1,15 +1,18 @@
 import ReactDOM from "react-dom"
 import React from "react"
-import nanoajax from "nanoajax"
+import { Provider } from "react-redux"
+import { createStore, combineReducers, applyMiddleware } from "redux"
+import thunk from "redux-thunk"
 
+import search from "./reducers/search"
 import App from "./components/App"
 
-const url = "/api/user?name=POTUS";
-nanoajax.ajax({url}, (code, response) => {
-    if (code == 200) {
-      const user = JSON.parse(response);
-      ReactDOM.render(<App user={user}/>, document.getElementById('root'));
-    } else {
-      console.log("Error")
-    }
-});
+const store = createStore(search, applyMiddleware(thunk))
+
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);

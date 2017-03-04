@@ -1,11 +1,9 @@
 import React from "react"
+import Search from "./Search"
 
-const App = ({user}) => (
+const App = (props) => (
   <div>
-    <div><span>{user.screen_name}</span><span>{user.name}</span></div>
-    <div>
-      <img src={user.profile_image_url}/><span>{user.description}</span>
-    </div>
+    <Search/>
   </div>
 );
 
