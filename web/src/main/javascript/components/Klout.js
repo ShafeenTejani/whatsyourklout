@@ -9,18 +9,24 @@ const format = (score) => (
 
 export const Klout = ({score, influence, onUserSelected}) => (
   <div>
-    <div className="klout-score">
-      <div className="klout-score-label">Klout score:</div>
-      <div className="klout-score-value">{format(score)}</div>
+    <div className="card">
+      <div className="klout-score">
+        <div className="klout-score-label card-label">Klout score</div>
+        <div className="klout-score-value">{format(score)}</div>
+      </div>
     </div>
     <div className="klout-influence">
-      <div className="top-influencers">
-        <div>Top Influencers</div>
-        <Influences influences={influence.myInfluencers} onUserSelected={onUserSelected}/>
+      <div className="card">
+        <div className="top-influencers">
+          <div className="card-label">Top Influencers</div>
+          <Influences influences={influence.myInfluencers} onUserSelected={onUserSelected}/>
+        </div>
       </div>
-      <div className="top-influencees">
-        <div>Top Influencees</div>
-        <Influences influences={influence.myInfluencees} onUserSelected={onUserSelected}/>
+      <div className="card">
+        <div className="top-influencees">
+          <div className="card-label">Top Influencees</div>
+          <Influences influences={influence.myInfluencees} onUserSelected={onUserSelected}/>
+        </div>
       </div>
     </div>
   </div>

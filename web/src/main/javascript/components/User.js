@@ -3,17 +3,19 @@ import Klout from "./Klout"
 
 const User = ({user}) => (
   <div className="selected-user-container">
-    <div className="user-card">
+    <div className="user-card card">
       <UserProfile user={user.selected}/>
     </div>
+    <div className="klout-container">
     { !user.klout ? <Loading/> :
-        user.klout.failed ? <div className="klout-failed">Unable to load klout</div> :
+        user.klout.failed ? <div className="klout-failed card">Unable to load klout</div> :
         <Klout {...user.klout}/> }
+    </div>
   </div>
 );
 
 const Loading = (props) => (
-  <div className="loading"/>
+  <div className="loading">Loading</div>
 );
 
 const UserProfile = ({user}) => (
