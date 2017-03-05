@@ -5,25 +5,33 @@ import { userSelected } from "../actions/userActions"
 import { connect } from "react-redux"
 
 const renderSuggestion = (suggestion) => {
-  return <span className='search-result'><span className='name'>{suggestion.name}</span> <b>@{suggestion.handle}</b> <img src={suggestion.profile_pic}/></span>
+  return <div className='search-result'>
+    <div className="profile-pic"><img src={suggestion.profile_pic}/></div>
+    <div className="user-container">
+      <div className="name">{suggestion.name}</div>
+      <div className="handle">@{suggestion.handle}</div>
+    </div>
+  </div>
 };
 
 export const SearchComponent = (props) => {
   const inputProps = {
-    placeholder: "Search for a twitter username...",
+    placeholder: "Search Twitter...",
     value: props.value,
     onChange: props.onValueChanged
   };
 
   return (
-    <Autosuggest
-      suggestions={props.suggestions}
-      onSuggestionsFetchRequested={props.onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={props.onSuggestionsClearRequested}
-      getSuggestionValue={(suggestion) => suggestion.name}
-      renderSuggestion={renderSuggestion}
-      onSuggestionSelected={props.onSuggestionSelected}
-      inputProps={inputProps} />
+    <div className="search-container">
+      <Autosuggest
+        suggestions={props.suggestions}
+        onSuggestionsFetchRequested={props.onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={props.onSuggestionsClearRequested}
+        getSuggestionValue={(suggestion) => suggestion.name}
+        renderSuggestion={renderSuggestion}
+        onSuggestionSelected={props.onSuggestionSelected}
+        inputProps={inputProps} />
+    </div>
   );
 };
 

@@ -46,6 +46,6 @@ describe('App', () => {
     const app = shallow(<App user={initialState.user} search={initialState.search}/>);
 
     expect(app.find(User).length).to.be(0);
-    expect(app.find(".select-user-message").text()).to.be("Select a user");
+    expect(app.find(".select-user-message").length).to.be(1);
   });
 });

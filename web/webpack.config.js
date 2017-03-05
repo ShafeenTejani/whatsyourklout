@@ -1,3 +1,4 @@
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
 
@@ -8,17 +9,25 @@ module.exports = {
         path: path.resolve(__dirname, 'build')
     },
     module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015', 'react']
-                }
-            }
+      rules: [
+           {
+             test: /\.less$/,
+             use: ExtractTextPlugin.extract({
+               fallback: 'style-loader',
+               //resolve-url-loader may be chained before sass-loader if necessary
+               use: ['css-loader', 'less-loader']
+             })
+           },
+           {
+               test: /\.js$/,
+               exclude: /node_modules/,
+               loader: 'babel-loader',
+               query: {
+                   presets: ['es2015', 'react']
+               }
+           }
         ]
-    },
+      },
     devServer: {
       proxy: {
         '/api/*': 'http://localhost:8000/'
@@ -26,5 +35,8 @@ module.exports = {
     },
     plugins: [new HtmlWebpackPlugin({
       title: 'project',
-      template: path.resolve(__dirname, 'src/main/javascript/index_template.html')})]
+      template: path.resolve(__dirname, 'src/main/javascript/index_template.html')}),
+      new ExtractTextPlugin( "bundle.css" )
+
+    ]
 };
