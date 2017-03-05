@@ -1,6 +1,7 @@
 var request = require("request-promise");
 var _ = require("lodash");
-var getTwitterUsers = require("./twitter").getUsers;
+var twitter = require("./twitter");
+
 
 var apiKey = "5upbq28kbg94vhdrtqvxgh73";
 
@@ -15,7 +16,7 @@ function getKlout(twitterUsername, error, success) {
 
 function getKloutForUser(twitterUsername, error, success) {
   var url = "http://api.klout.com/v2/identity.json/twitter?screenName=" + twitterUsername + "&key=" + apiKey;
-  request(url).then(function(body) {
+  request.get(url).then(function(body) {
                       return JSON.parse(body)["id"];;
                     })
               .then(getScoreForId)
@@ -26,7 +27,7 @@ function getKloutForUser(twitterUsername, error, success) {
 
 function getScoreForId(kloutId) {
   var url = "http://api.klout.com/v2/user.json/" + kloutId + "/score?key=" + apiKey;
-  return request(url).then(function(body) {
+  return request.get(url).then(function(body) {
     var score = JSON.parse(body);
     score['id'] = kloutId;
     return score
@@ -35,7 +36,7 @@ function getScoreForId(kloutId) {
 
 function getInfluence(score) {
     var url = "http://api.klout.com/v2/user.json/" + score.id + "/influence?key=" + apiKey;
-    return request(url).then(function(body) {
+    return request.get(url).then(function(body) {
       var influence = JSON.parse(body);
 
       return {
@@ -54,7 +55,7 @@ function getUsers(klout, error, success) {
   var influencees = _.map(klout.influence.myInfluencees, toHandles);
   var handles = influencers.concat(influencees).join(',')
 
-  getTwitterUsers(handles, error, function (users) {
+  twitter.getUsers(handles, error, function (users) {
     var kloutWithUsers = zipUsersWithKlout(klout, users);
     success(kloutWithUsers);
   })
@@ -92,5 +93,6 @@ function toInfluence(response) {
 }
 
 module.exports = {
-  getKlout: getKlout
+  getKlout: getKlout,
+  twitter: twitter
 };

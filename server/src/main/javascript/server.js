@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var app = express();
-var static_path = path.join(__dirname, '../web/build');
+var static_path = path.join(__dirname, '../../../../web/build');
 
 var twitter = require('./twitter');
 var klout = require('./klout');

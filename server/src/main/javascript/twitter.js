@@ -36,12 +36,8 @@ function getUsers(query, error, success) {
   });
 }
 
-function getUser(name, error, success) {
-  twitter.getUser({'screen_name':name}, error, success);
-}
-
 module.exports = {
-  getUser: getUser,
+  client: twitter,
   getUsers: getUsers,
   search: search
 };
