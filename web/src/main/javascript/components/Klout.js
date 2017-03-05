@@ -30,7 +30,6 @@ const Influences = ({influences, onUserSelected}) => (
   <div>
     {influences.filter(i => i.user).map(i => (
         <div key={i.id} className="influence-item" onClick={() => {
-          console.log("clicked");
           onUserSelected(i.user);
         }}>
           <img src={i.user.profile_pic}/>

@@ -15,6 +15,8 @@ const klout = (state = null, action) => {
       return null;
     case 'KLOUT_FETCHED':
       return action.payload;
+    case 'KLOUT_FETCH_FAILED':
+      return { failed: true };
     default:
       return state;
   }

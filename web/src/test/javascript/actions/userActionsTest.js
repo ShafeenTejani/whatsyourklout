@@ -61,5 +61,26 @@ describe("userActions", () => {
         payload: kloutResponse
       });
     });
+
+    it("should emit an action of type KLOUT_FETCHED_FAILED if fetching of klout failed", () => {
+      const dispatch = sinon.spy();
+      const selected = {
+        name: "Non user",
+        id: "0",
+        handle: "nonUser",
+        profile_pic: "nonUser.png"
+      };
+
+      server.respondWith("GET", "/api/klout?user=nonUser",
+         [404, { "Content-Type": "application/json" }, "Not Found"]);
+
+      userSelected(selected)(dispatch);
+
+      server.respond();
+
+      expect(dispatch.secondCall.args[0]).to.eql({
+        type: "KLOUT_FETCH_FAILED"
+      });
+    });
   });
 });

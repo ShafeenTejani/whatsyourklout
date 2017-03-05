@@ -4,7 +4,9 @@ import Klout from "./Klout"
 const User = ({user}) => (
   <div>
     <UserProfile user={user.selected}/>
-    { user.klout ? <Klout {...user.klout}/> : <Loading/>}
+    { !user.klout ? <Loading/> :
+        user.klout.failed ? <div className="klout-failed">Unable to load klout</div> :
+        <Klout {...user.klout}/> }
   </div>
 );
 

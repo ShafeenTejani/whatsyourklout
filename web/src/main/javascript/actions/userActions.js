@@ -13,6 +13,10 @@ export const userSelected = (user) => (dispatch) => {
         type: "KLOUT_FETCHED",
         payload: klout
       });
+    } else {
+      dispatch({
+        type: "KLOUT_FETCH_FAILED"
+      })
     }
   });
 };

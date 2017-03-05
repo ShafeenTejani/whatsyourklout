@@ -58,4 +58,18 @@ describe("userReducer", () => {
       klout: klout
     });
   });
+
+  it("should store a failure state for klout when receiving a KLOUT_FETCH_FAILED action", () => {
+    const initialState = {
+      selected: { id: "1" },
+      klout: null
+    };
+
+    const state = reducer(initialState, { type: "KLOUT_FETCH_FAILED" });
+
+    expect(state).to.eql({
+      selected: { id: "1" },
+      klout: { failed: true }
+    });
+  });
 });

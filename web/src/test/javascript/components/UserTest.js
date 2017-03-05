@@ -29,6 +29,19 @@ describe('User', () => {
     expect(component.find(Klout).length).to.be(0);
   });
 
+
+  it("should render a message if the klout failed to load", () => {
+    const klout = {
+      failed: true
+    };
+
+    const component = shallow(<User user={{selected, klout}}/>);
+
+    expect(component.find(".loading").length).to.be(0);
+    expect(component.find(Klout).length).to.be(0);
+    expect(component.find(".klout-failed").text()).to.eql("Unable to load klout");
+  });
+
   it("should render the klout when it is available", () => {
     const klout = {
       score: {
