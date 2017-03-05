@@ -25,8 +25,8 @@ describe("searchActions", () => {
     it("should fetch suggestions from /api/search", () => {
 
       const suggestionsResponse = [
-        { "id_str": "123", "name": "Donald Trump", screen_name: "realDonaldTrump", profile_image_url: "img1" },
-        { "id_str": "456", "name": "Donald Draper", screen_name: "donDraper", profile_image_url: "img2"}
+        { id: "123", name: "Donald Trump", handle: "realDonaldTrump", profile_pic: "img1" },
+        { id: "456", name: "Donald Draper", handle: "donDraper", profile_pic: "img2" }
       ];
       const dispatch = sinon.spy()
 
@@ -39,7 +39,7 @@ describe("searchActions", () => {
 
       expect(dispatch.firstCall.args[0]).to.eql({
         type: "SUGGESTIONS_FETCHED",
-        payload: suggestionsResponse.map(toResult)
+        payload: suggestionsResponse
       });
     })
   });
@@ -54,12 +54,4 @@ describe("searchActions", () => {
       });
     })
   });
-});
-
-
-const toResult = (r) => ({
-  name: r.name,
-  id: r.id_str,
-  handle: r.screen_name,
-  profile_pic: r.profile_image_url
 });

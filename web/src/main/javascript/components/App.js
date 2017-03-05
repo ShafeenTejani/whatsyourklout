@@ -1,10 +1,17 @@
 import React from "react"
-import Search from "./Search"
+import { connect } from "react-redux"
 
-const App = (props) => (
+import Search from "./Search"
+import User from "./User"
+
+
+export const App = (props) => (
   <div>
     <Search/>
+    { props.user.selected ? <User user={props.user}/> : <div className="select-user-message">Select a user</div>}
   </div>
 );
 
-export default App;
+export default connect(
+  (s) => s,
+  () => ({}))(App);

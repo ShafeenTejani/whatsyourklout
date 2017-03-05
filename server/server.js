@@ -20,7 +20,7 @@ app.route('/api/search').get(function(req, res) {
      res.status(500).json({error: error});
    },
    function (success) {
-     res.status(200).json(JSON.parse(success));
+     res.status(200).json(success);
    }
  );
 });

@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "express": "^4.15.0",
+    "lodash": "^4.17.4",
     "nanoajax": "^0.4.3",
     "react": "^15.4.2",
     "react-autosuggest": "^9.0.0",

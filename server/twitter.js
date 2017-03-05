@@ -1,4 +1,5 @@
 var Twitter = require('twitter-node-client').Twitter;
+var _ = require('lodash');
 var twitter = new Twitter({
   consumerKey: "9qrmiHvFGzojxNn9ko1YjXMSj",
   consumerSecret: "JGICWUx9eUmtZjcP4TDLluvl5GVvTBnji2ZjBNr7EUIxRgfVsC",
@@ -8,7 +9,17 @@ var twitter = new Twitter({
 
 
 function search(query, error, success) {
-  twitter.getCustomApiCall('/users/search.json',{ q: query, count: 5}, error, success);
+  twitter.getCustomApiCall('/users/search.json',{ q: query, count: 5}, error, function(response) {
+    var users = JSON.parse(response);
+    success(_.map(users, function(user) {
+      return {
+        id: user.id_str,
+        name: user.name,
+        handle: user.screen_name,
+        profile_pic: user.profile_image_url
+      };
+    }));
+  });
 }
 
 function getUser(name, error, success) {
