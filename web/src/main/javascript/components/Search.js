@@ -30,7 +30,7 @@ export const SearchComponent = (props) => {
 
 const mapStateToProps = (state) => {
   return state.search;
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -47,7 +47,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(userSelected(suggestion))
     }
   }
-}
+};
+
 const Search = connect(
   mapStateToProps,
   mapDispatchToProps

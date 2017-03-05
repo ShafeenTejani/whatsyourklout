@@ -5,6 +5,7 @@ var static_path = path.join(__dirname, '../web/build');
 
 var twitter = require('./twitter');
 var klout = require('./klout');
+var _ = require("lodash");
 
 
 app.route('/').get(function(req, res) {
@@ -37,6 +38,7 @@ app.route('/api/user').get(function(req, res) {
   );
 
 });
+
 
 app.route('/api/klout').get(function(req, res) {
   var user = req.param("user");

@@ -2,8 +2,6 @@ import React from 'react'
 import expect from 'must'
 import { mount } from 'enzyme'
 import sinon from 'sinon'
-import mustSinon from 'must-sinon'
-mustSinon(expect);
 
 import { SearchComponent } from '../../../main/javascript/components/Search'
 

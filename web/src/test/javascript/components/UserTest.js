@@ -1,8 +1,9 @@
 import React from 'react'
 import expect from 'must'
-import { mount } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 
-import User from '../../../main/javascript/components/User'
+import User from "../../../main/javascript/components/User"
+import Klout from "../../../main/javascript/components/Klout"
 
 describe('User', () => {
 
@@ -14,10 +15,37 @@ describe('User', () => {
   };
 
   it("should render user info", () => {
-    const app = mount(<User user={{selected, klout: null}}/>);
+    const component = mount(<User user={{selected, klout: null}}/>);
 
-    expect(app.find(".user-name").text()).to.be(selected.name);
-    expect(app.find(".handle").text()).to.be("@" + selected.handle);
-    expect(app.find(".profile-pic").prop("src")).to.be(selected.profile_pic);
+    expect(component.find(".user-name").text()).to.be(selected.name);
+    expect(component.find(".handle").text()).to.be("@" + selected.handle);
+    expect(component.find(".profile-pic").prop("src")).to.be(selected.profile_pic);
+  });
+
+  it("should render loading if there is no klout", () => {
+    const component = mount(<User user={{selected, klout: null}}/>);
+
+    expect(component.find(".loading").length).to.be(1);
+    expect(component.find(Klout).length).to.be(0);
+  });
+
+  it("should render the klout when it is available", () => {
+    const klout = {
+      score: {
+        score: 14.5
+      },
+      influence: {
+        myInfluencers: [],
+        myInfluencees: []
+      }
+    };
+    const component = shallow(<User user={{selected, klout}}/>);
+
+    expect(component.find(".loading").length).to.be(0);
+    expect(component.find(Klout).length).to.be(1);
+    expect(component.find(Klout).props()).to.eql({
+      score: klout.score,
+      influence: klout.influence
+    });
   });
 });

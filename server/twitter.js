@@ -22,11 +22,26 @@ function search(query, error, success) {
   });
 }
 
+function getUsers(query, error, success) {
+  twitter.getCustomApiCall('/users/lookup.json',{ screen_name: query, include_entities: false}, error, function(response) {
+    var users = JSON.parse(response);
+    success(_.map(users, function(user) {
+      return {
+        id: user.id_str,
+        name: user.name,
+        handle: user.screen_name,
+        profile_pic: user.profile_image_url
+      };
+    }));
+  });
+}
+
 function getUser(name, error, success) {
   twitter.getUser({'screen_name':name}, error, success);
 }
 
 module.exports = {
   getUser: getUser,
+  getUsers: getUsers,
   search: search
 };

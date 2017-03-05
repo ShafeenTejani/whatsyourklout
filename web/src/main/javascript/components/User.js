@@ -1,14 +1,16 @@
 import React from "react";
+import Klout from "./Klout"
 
 const User = ({user}) => (
   <div>
     <UserProfile user={user.selected}/>
-    <div>
-      Loading klout...
-    </div>
+    { user.klout ? <Klout {...user.klout}/> : <Loading/>}
   </div>
 );
 
+const Loading = (props) => (
+  <div className="loading"/>
+);
 
 const UserProfile = ({user}) => (
   <div>
