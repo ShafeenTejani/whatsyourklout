@@ -19,7 +19,7 @@ describe('User', () => {
 
     expect(component.find(".user-name").text()).to.be(selected.name);
     expect(component.find(".handle").text()).to.be("@" + selected.handle);
-    expect(component.find(".profile-pic").prop("src")).to.be(selected.profile_pic);
+    expect(component.find(".profile-pic img").prop("src")).to.be(selected.profile_pic);
   });
 
   it("should render loading if there is no klout", () => {

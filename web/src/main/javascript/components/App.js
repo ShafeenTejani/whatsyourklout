@@ -6,7 +6,7 @@ import User from "./User"
 
 
 export const App = (props) => (
-  <div>
+  <div className="app-root">
     <Search/>
     { props.user.selected ? <User user={props.user}/> : <div className="select-user-message"></div>}
   </div>
