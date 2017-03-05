@@ -1,9 +1,12 @@
 import React from "react";
 import Autosuggest from "react-autosuggest";
 import { fetchSuggestions, clearSuggestions, valueChanged } from "../actions/searchActions"
+import { userSelected } from "../actions/userActions"
 import { connect } from "react-redux"
 
-const renderSuggestion = (suggestion) => (<span className='search-result'>{suggestion.name}</span>);
+const renderSuggestion = (suggestion) => {
+  return <span className='search-result'><span className='name'>{suggestion.name}</span> <b>@{suggestion.handle}</b> <img src={suggestion.profile_pic}/></span>
+};
 
 export const SearchComponent = (props) => {
   const inputProps = {
@@ -19,16 +22,14 @@ export const SearchComponent = (props) => {
       onSuggestionsClearRequested={props.onSuggestionsClearRequested}
       getSuggestionValue={(suggestion) => suggestion.name}
       renderSuggestion={renderSuggestion}
+      onSuggestionSelected={props.onSuggestionSelected}
       inputProps={inputProps} />
   );
 };
 
 
 const mapStateToProps = (state) => {
-  return {
-    suggestions: state.suggestions,
-    value: state.value
-  }
+  return state.search;
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -41,6 +42,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onValueChanged: (event, { newValue }) => {
       dispatch(valueChanged(newValue))
+    },
+    onSuggestionSelected: (event, { suggestion }) => {
+      dispatch(userSelected(suggestion))
     }
   }
 }

@@ -38,23 +38,11 @@ app.route('/api/user').get(function(req, res) {
 
 });
 
-app.route('/api/klout-score').get(function(req, res) {
+app.route('/api/klout').get(function(req, res) {
   var user = req.param("user");
-  klout.getScore(user,
+  klout.getKlout(user,
     function (error) {
-      res.status(500).json({error: error});
-    },
-    function (success) {
-      res.status(200).json(success);
-    }
-  )
-});
-
-app.route('/api/klout-influence').get(function(req, res) {
-  var user = req.param("id");
-  klout.getInfluence(id,
-    function (error) {
-      res.status(500).json({error: error});
+      res.status(error.statusCode || 500).json({error: error.message});
     },
     function (success) {
       res.status(200).json(success);

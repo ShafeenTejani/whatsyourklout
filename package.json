@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./server/server.js",
     "dev": "./node_modules/npm-run-all/bin/npm-run-all/index.js  --parallel dev-server dev-client",
-    "dev-server": "./node_modules/nodemon/bin/nodemon.js server/server.js",
+    "dev-server": "./node_modules/nodemon/bin/nodemon.js server/server.js --watch server",
     "dev-client": "webpack-dev-server --config ./web/webpack.config.js --hot --progress --colors --content-base ./web/build",
     "build": "./node_modules/webpack/bin/webpack.js --config ./web/webpack.config.js",
     "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register --require ./web/src/test/testSetup.js --recursive ./web/src/test/javascript/**/**Test.js"
@@ -41,6 +41,7 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "request": "^2.80.0",
+    "request-promise": "^4.1.1",
     "twitter-node-client": "0.0.6"
   }
 }

@@ -19,7 +19,12 @@ export const fetchSuggestions = (query) => (dispatch) => {
 const fetchSearchResultsFromApi = (query, callback) => {
   nanoajax.ajax({url: `/api/search?q=${query}`}, function(code, response) {
     if (code == 200) {
-      const names = JSON.parse(response).map(e => ({name: e.name, id: e.id_str }));
+      const names = JSON.parse(response).map(e => (
+        {name: e.name,
+          id: e.id_str,
+          handle: e.screen_name,
+          profile_pic: e.profile_image_url
+        }));
       callback(names);
     }
   });

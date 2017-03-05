@@ -23,9 +23,30 @@ describe('Search', () => {
 
       component.find('input').first().simulate('focus');
 
-      const text = component.find('.search-result').map(e => e.text());
+      const text = component.find('.search-result .name').map(e => e.text());
 
       expect(text).to.eql(['Barack Obama', 'Donald Trump']);
+  });
+
+  it('should call onSuggestionSelected when a suggestion is selected', () => {
+    const suggestionSelectedSpy = sinon.spy();
+    const suggestions = [
+      { name: 'Barack Obama', id: '123'},
+      { name: 'Donald Trump', id: '456'}
+    ];
+    const component = mount(<SearchComponent
+      onSuggestionsFetchRequested={() =>{}}
+      onSuggestionsClearRequested={() => {}}
+      onSuggestionSelected={suggestionSelectedSpy}
+      onValueChanged={() => {}}
+      suggestions={suggestions}
+      value="X"
+      />);
+
+      component.find('input').first().simulate('focus');
+      component.find('.search-result').first().simulate('click');
+
+      expect(suggestionSelectedSpy.lastCall.args[1].suggestion).to.eql(suggestions[0]);
   });
 
   it('should call onSuggestionsFetchRequested when search text is entered', () => {
