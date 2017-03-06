@@ -34,7 +34,7 @@ module.exports = {
       }
     },
     plugins: [new HtmlWebpackPlugin({
-      title: 'project',
+      title: "What's Your Klout?",
       template: path.resolve(__dirname, 'src/main/javascript/index_template.html')}),
       new ExtractTextPlugin( "bundle.css" )
 
