@@ -1,10 +1,9 @@
 var request = require("request-promise");
 var _ = require("lodash");
+var config = require("../../../config").kloutConfig;
 var twitter = require("./twitter");
 
-
-var apiKey = "5upbq28kbg94vhdrtqvxgh73";
-
+var apiKey = config.apiKey;
 
 function getKlout(twitterUsername, error, success) {
   getKloutForUser(twitterUsername, error, function(klout) {

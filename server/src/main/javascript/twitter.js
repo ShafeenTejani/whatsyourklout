@@ -1,10 +1,11 @@
 var Twitter = require('twitter-node-client').Twitter;
 var _ = require('lodash');
+var config = require("../../../config").twitterConfig;
 var twitter = new Twitter({
-  consumerKey: "9qrmiHvFGzojxNn9ko1YjXMSj",
-  consumerSecret: "JGICWUx9eUmtZjcP4TDLluvl5GVvTBnji2ZjBNr7EUIxRgfVsC",
-  accessToken: "150250608-qnjzgRok1ig8hVjSWLiNrApplQh9jhVC9EEGf9Em",
-  accessTokenSecret: "t2IlCu0SGsRPdyN2jndH9QxcMB8IWwQfY8asjycPUREWZ"
+  consumerKey: config.consumerKey,
+  consumerSecret: config.consumerSecret,
+  accessToken: config.accessToken,
+  accessTokenSecret: config.accessTokenSecret
 });
 
 
