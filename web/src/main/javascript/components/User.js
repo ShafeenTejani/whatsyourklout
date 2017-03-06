@@ -8,14 +8,25 @@ const User = ({user}) => (
     </div>
     <div className="klout-container">
     { !user.klout ? <Loading/> :
-        user.klout.failed ? <div className="klout-failed card">Unable to load klout</div> :
+        user.klout.failed ? <KloutFailed/> :
         <Klout {...user.klout}/> }
     </div>
   </div>
 );
 
+const KloutFailed = (props) => (
+  <div className="klout-failed">
+    <div className="card">
+      <div>
+        <div className="card-label">Klout</div>
+        <div className="message">Sorry, no Klout available for this user {'🙈'}</div>
+      </div>
+    </div>
+  </div>
+)
+
 const Loading = (props) => (
-  <div className="loading">Loading</div>
+  <div className="loading"></div>
 );
 
 const UserProfile = ({user}) => (
