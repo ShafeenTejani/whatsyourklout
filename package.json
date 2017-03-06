@@ -9,7 +9,7 @@
     "dev-server": "./node_modules/nodemon/bin/nodemon.js server/src/main/javascript/server.js --watch server/src/main/javascript",
     "dev-client": "webpack-dev-server --config ./web/webpack.config.js --hot --progress --colors --content-base ./web/build",
     "build": "./node_modules/webpack/bin/webpack.js --config ./web/webpack.config.js",
-    "postInstall": "npm run build",
+    "postinstall": "npm run build",
     "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register --require ./web/src/test/testSetup.js --recursive ./web/src/test/javascript/**/**Test.js ./server/src/test/javascript/**/**Test.js"
   },
   "author": "",
