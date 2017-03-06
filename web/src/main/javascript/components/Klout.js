@@ -33,14 +33,17 @@ export const Klout = ({score, influence, onUserSelected}) => (
 );
 
 const Influences = ({influences, onUserSelected}) => (
-  <div>
+  <div className="influence-container">
     {influences.filter(i => i.user).map(i => (
         <div key={i.id} className="influence-item" onClick={() => {
           onUserSelected(i.user);
         }}>
-          <img src={i.user.profile_pic}/>
-          <span className="handle">@{i.user.handle}</span>
-          <span className="klout-score-value">{format(i.score)}</span>
+          <div className="profile-pic"><img src={i.user.profile_pic}/></div>
+          <div className="user-container">
+            <div className="name">{i.user.name}</div>
+            <div className="handle">@{i.user.handle}</div>
+          </div>
+          <div className="klout-score-value">{format(i.score)}</div>
         </div>
       ))}
   </div>

@@ -26,8 +26,9 @@ describe('Search', () => {
       expect(text).to.eql(['Barack Obama', 'Donald Trump']);
   });
 
-  it('should call onSuggestionSelected when a suggestion is selected', () => {
+  it('should call onSuggestionSelected and clears the value when a suggestion is selected', () => {
     const suggestionSelectedSpy = sinon.spy();
+    const valueChangeSpy = sinon.spy();
     const suggestions = [
       { name: 'Barack Obama', id: '123'},
       { name: 'Donald Trump', id: '456'}
@@ -36,7 +37,7 @@ describe('Search', () => {
       onSuggestionsFetchRequested={() =>{}}
       onSuggestionsClearRequested={() => {}}
       onSuggestionSelected={suggestionSelectedSpy}
-      onValueChanged={() => {}}
+      onValueChanged={valueChangeSpy}
       suggestions={suggestions}
       value="X"
       />);
@@ -45,6 +46,7 @@ describe('Search', () => {
       component.find('.search-result').first().simulate('click');
 
       expect(suggestionSelectedSpy.lastCall.args[1].suggestion).to.eql(suggestions[0]);
+      expect(valueChangeSpy.lastCall.args[1].newValue).to.eql("");
   });
 
   it('should call onSuggestionsFetchRequested when search text is entered', () => {

@@ -21,6 +21,11 @@ export const SearchComponent = (props) => {
     onChange: props.onValueChanged
   };
 
+  const suggestionSelected = (event, selection) => {
+    props.onSuggestionSelected(event, selection);
+    props.onValueChanged(event, { newValue: ""});
+  }
+
   return (
     <div className="search-container">
       <Autosuggest
@@ -29,7 +34,7 @@ export const SearchComponent = (props) => {
         onSuggestionsClearRequested={props.onSuggestionsClearRequested}
         getSuggestionValue={(suggestion) => suggestion.name}
         renderSuggestion={renderSuggestion}
-        onSuggestionSelected={props.onSuggestionSelected}
+        onSuggestionSelected={suggestionSelected}
         inputProps={inputProps} />
     </div>
   );
