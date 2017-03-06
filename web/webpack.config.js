@@ -35,8 +35,8 @@ module.exports = {
     },
     plugins: [new HtmlWebpackPlugin({
       title: "What's Your Klout?",
+      favicon: path.resolve(__dirname, 'src/main/images/favicon.ico'),
       template: path.resolve(__dirname, 'src/main/javascript/index_template.html')}),
       new ExtractTextPlugin( "bundle.css" )
-
     ]
 };
