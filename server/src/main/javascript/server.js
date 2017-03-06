@@ -7,6 +7,8 @@ var twitter = require('./twitter');
 var klout = require('./klout');
 var _ = require("lodash");
 
+var PORT = (process.env.PORT || 8000)
+
 
 app.route('/').get(function(req, res) {
     res.sendFile('index.html', {
@@ -57,7 +59,7 @@ app.use('/', express.static(static_path, {
     maxage: 31557600
 }));
 
-var server = app.listen(8000, function () {
+var server = app.listen(PORT, function () {
 
   var host = server.address().address;
   var port = server.address().port;
