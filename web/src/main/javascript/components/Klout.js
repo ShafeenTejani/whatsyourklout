@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux"
 
+import kloutCategory from "../utils/kloutCategory"
 import { userSelected } from "../actions/userActions"
 
 const format = (score) => (
@@ -12,7 +13,9 @@ export const Klout = ({score, influence, onUserSelected}) => (
     <div className="card">
       <div className="klout-score">
         <div className="klout-score-label card-label">Klout score</div>
-        <div className="klout-score-value">{format(score)}</div>
+        <div className={`klout-score-value klout-${kloutCategory(score)}`}>
+          {format(score)}
+        </div>
       </div>
     </div>
     <div className="klout-influence">
@@ -43,7 +46,9 @@ const Influences = ({influences, onUserSelected}) => (
             <div className="name">{i.user.name}</div>
             <div className="handle">@{i.user.handle}</div>
           </div>
-          <div className="klout-score-value">{format(i.score)}</div>
+          <div className={`klout-score-value klout-${kloutCategory(i.score)}`}>
+            {format(i.score)}
+          </div>
         </div>
       ))}
   </div>
