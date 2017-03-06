@@ -17,8 +17,6 @@
   "devDependencies": {
     "enzyme": "^2.7.1",
     "jsdom": "^9.11.0",
-    "less": "^2.7.2",
-    "less-loader": "^2.2.3",
     "mocha": "^3.2.0",
     "must": "^0.13.4",
     "nodemon": "^1.11.0",
@@ -39,6 +37,8 @@
     "express": "^4.15.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.28.0",
+    "less": "^2.7.2",
+    "less-loader": "^2.2.3",
     "lodash": "^4.17.4",
     "nanoajax": "^0.4.3",
     "react": "^15.4.2",
