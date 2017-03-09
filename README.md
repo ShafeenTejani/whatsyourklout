@@ -17,6 +17,7 @@ This application is written in JavaScript, with a [Node.js](https://nodejs.org/e
 
 ## Running the application
 
+1. `npm install` will download all of the dependencies.
 1. `npm run build` will use webpack to build all of the front-end assets.
 1. `npm start` will then start the application which should be running at [localhost:8000](http://localhost:8000)
 
